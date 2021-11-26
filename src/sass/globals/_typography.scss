@@ -1,0 +1,69 @@
+* {
+  color: $gray-light;
+  font-family: $content-font;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+h1,
+.h1 {
+  font-size: 3rem; // 48px
+  font-family: $heading-font;
+  margin-top: 3rem;
+}
+
+h2,
+.h2 {
+  font-size: 2.5rem; // 40px;
+  font-family: $heading-font;
+  text-align: center;
+  margin: 24px 0;
+  line-height: 1.7;
+
+  @include breakpoint(sm) {
+    font-size: 3rem; // 48px;
+  }
+}
+
+h3,
+.h3 {
+  font-size: 26px;
+  font-family: $heading-font;
+}
+
+h3.players-info {
+  font-family: $content-font;
+  font-size: 2rem;
+}
+
+h4,
+.h4 {
+  font-size: 21px;
+  font-family: $heading-font;
+  line-height: 1.5;
+  margin: 1rem 0;
+}
+
+.faq h4,
+.faq .h4 {
+  color: $pink;
+  margin-top: 3rem;
+}
+
+.start-date {
+  margin: 24px 0;
+}
+
+a {
+  color: $pink;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+em {
+  color: $pink;
+  font-style: normal;
+}
