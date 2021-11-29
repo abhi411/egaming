@@ -1,0 +1,35 @@
+.globalScore {
+    padding: 10px 16px;
+    width: -moz-fit-content;
+    width: fit-content;
+    border: 1px solid;
+    border-radius: 5px;
+    /* top: 0; */
+    right: 20px;
+    position: absolute;
+    z-index: 99;
+}
+.globalScore-div {
+    flex-direction: row;
+    width: 100%;
+    position: relative;
+    height: 60px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+.globalBtn {
+    padding: 10px 16px;
+    /* width: -moz-fit-content; */
+    width: 200px;
+    border:     1px solid #ffffff ;
+    border-radius: 5px;
+    color:white;
+    cursor: pointer;
+    background: transparent;
+    font-family: "PoeRedcoatNew", Helvetica, Arial, sans-serif;
+    font-size: 20px;
+    display: block;
+    transition: all 0.2s ease-in-out;
+}
