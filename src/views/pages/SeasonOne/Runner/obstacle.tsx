@@ -10,7 +10,7 @@ class Obstacle extends Sprite {
     IMG_SRC: [cactusSmallImg, cactusLargeImg],
     X_POS: null,
     Y_POS: null,
-    GROUND_HEIGHT: 20,
+    GROUND_HEIGHT: 60,
   }
 
   constructor(canvas: HTMLCanvasElement, options = {}) {

@@ -6,7 +6,7 @@ import GroundManager from './groundManager'
 import Trex from './trex'
 import gameoverTextImg from './images/gameover_text.png'
 import restartButtonImg from './images/restart_button.png'
-import { setScore } from 'views/components/GlobalScore'
+import { setGlobalScore } from 'views/components/GlobalScore'
 
 export const STATUS = {
   START: Symbol('START'),
@@ -63,8 +63,8 @@ class Runner extends React.Component {
 
   config = {
     ID: '',
-    WIDTH: 600,
-    HEIGHT: 150,
+    WIDTH: 900,
+    HEIGHT: 450,
     BG_COLOR: '#FFFFFF',
     INIT_SPEED: 300,
     ACCELERATION: 7,
@@ -185,7 +185,7 @@ class Runner extends React.Component {
       this.distanceRan += this.currentSpeed * deltaTime
       console.log('setting score', this.distanceMeter.score);
 
-      setScore(this.distanceMeter.score)
+      setGlobalScore(this.distanceMeter.score)
       // console.log("jdhj",this.distanceMeter,deltaTime,this.distanceRan,this.tRex,this.currentSpeed)
       // speed update
       this.accelerationTime += deltaTime

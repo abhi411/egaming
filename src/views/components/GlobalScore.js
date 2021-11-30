@@ -8,7 +8,7 @@ import { bind, Subscribe } from "@react-rxjs/core";
 
 import {updateGlobal,getglobalScore} from './global';
 
-export const [scoreChange$, setScore] = createSignal();
+export const [scoreChange$, setGlobalScore] = createSignal();
 export const [useScore, score$] = bind(scoreChange$, 0)
  
 

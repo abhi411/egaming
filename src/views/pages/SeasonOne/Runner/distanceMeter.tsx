@@ -19,7 +19,7 @@ class DistanceMeter extends React.Component {
     DIGIT_WIDTH: 10,
     DIGIT_HEIGHT: 13,
     DIGIT_DEST_WIDTH: 11,
-    Y_POS: 0,
+    Y_POS: 30,
   }
 
   constructor(canvas, options = {}) {

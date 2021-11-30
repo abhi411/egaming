@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect} from "react";
-import { GlobalScore, setScore } from "views/components/GlobalScore";
+import { GlobalScore, setGlobalScore } from "views/components/GlobalScore";
 // import "./GSix";
 
 const GameSix =()=> {
@@ -445,7 +445,7 @@ const GameSix =()=> {
         }
         
         this.scoreContainer.innerHTML = String(this.blocks.length - 1);
-        setScore(this.blocks.length - 1)
+        setGlobalScore(this.blocks.length - 1)
         let newKidOnTheBlock = new Block(lastBlock);
         this.newBlocks.add(newKidOnTheBlock.mesh);
         this.blocks.push(newKidOnTheBlock);

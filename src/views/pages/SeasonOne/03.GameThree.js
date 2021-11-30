@@ -4,7 +4,7 @@ import { PlayerContext } from "util/PlayerContext";
 import { updatePlayerDatabase } from "util/interactions-game";
 import "./breakout.css"
 import "./breakout.js"
-import {GlobalScore} from '../../components/GlobalScore';
+import {GlobalScore,setGlobalScore} from '../../components/GlobalScore';
 
 const GameFour = (props) => {
   // This is the ID of the current player so we can pass it to the DB later
@@ -179,7 +179,7 @@ useEffect(() => {
   // Increase score
   function increaseScore() {
     score++;
-  
+    setGlobalScore(score)
     if (score % (brickRowCount * brickColumnCount) === 0) {
   
         ball.visible = false;
@@ -189,6 +189,7 @@ useEffect(() => {
         setTimeout(function () {
             showAllBricks();
             score = 0;
+            setGlobalScore(score)
             paddle.x = canvas.width / 2 - 40;
             paddle.y = canvas.height - 20;
             ball.x = canvas.width / 2;

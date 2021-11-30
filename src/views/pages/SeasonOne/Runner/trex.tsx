@@ -33,9 +33,9 @@ class Trex extends Sprite {
       CRASH: { img: tRexCrashImg },
     },
     DUCK_INTERVAL: 0.1,
-    X_POS: 20,
+    X_POS: 0,
     Y_POS: 0,
-    GROUND_HEIGHT: 20,
+    GROUND_HEIGHT: 60,
     GRAVITY: 2000,
     JUMP_SPEED: 550,
     SPEED: 70, // move when you start the game for the first time
@@ -53,7 +53,7 @@ class Trex extends Sprite {
       ...options,
     }
     this.loadSounds()
-    this.xPos = 0
+    this.xPos = 70
     this.groundY =
       this.canvas.height - this.img.height - this.config.GROUND_HEIGHT
     this.yPos = this.config.Y_POS || this.groundY

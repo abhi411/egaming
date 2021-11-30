@@ -6,8 +6,8 @@ class Cloud extends Sprite {
   config = {
     IMG_SRC: defaultCloudImg,
     X_POS: null,
-    Y_POS: null,
-    MAX_SKY_LEVEL: null,
+    Y_POS: 30,
+    MAX_SKY_LEVEL: 40,
     MIN_SKY_LEVEL: null,
     SPEED: 0,
     RATIO: 0.3,

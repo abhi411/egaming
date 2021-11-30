@@ -7,6 +7,7 @@ import { useInterval } from "../../hooks/useInterval";
 import Center from "../Center";
 
 import { PrintPlayerInMap } from "../../utils/Utils";
+import {setGlobalScore} from '../../../../components/GlobalScore';
 
 //TODO: Alterar OnClick (rotatePlayer) para OnFastClick (criar hook)
 //TODO: Organização do componente "Game" (Separar codigo em hooks, outros components e funcoes)
@@ -256,6 +257,7 @@ const Game = () => {
 				const bonusLevel = 100 * (level * level);
 				const bonusRows = 40 * (rowsClear.length * rowsClear.length - 1);
 				setScore(score => score + 300 * rowsClear.length + bonusRows + bonusLevel);
+				setGlobalScore(score + 300 * rowsClear.length + bonusRows + bonusLevel)
 				return newMap;
 			}
 			return map;

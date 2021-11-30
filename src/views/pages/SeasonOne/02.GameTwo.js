@@ -4,7 +4,7 @@ import Food from './Food';
 import "./GameTwo.css"
 import { updatePlayerDatabase } from "util/interactions-game";
 import { PlayerContext } from "util/PlayerContext";
-import {GlobalScore} from '../../components/GlobalScore';
+import {GlobalScore,setGlobalScore} from '../../components/GlobalScore';
 
 const getRandomCoordinates = () => {
   let min = 1;
@@ -118,6 +118,7 @@ class GameTwo extends Component {
     this.setState({
       snakeDots: newSnake
     })
+    setGlobalScore(this.state.snakeDots.length-1)
   }
 
   increaseSpeed() {
@@ -137,7 +138,7 @@ class GameTwo extends Component {
     return (
       <div>
 			{/* <h4 style={{textAlign:'center'}}>Snack Game</h4> */}
-       <GlobalScore game="Snack Game" score={this.state.snakeDots.length}/>
+       <GlobalScore game="Snack Game"/>
         <div className="game-area">
         <Snake snakeDots={this.state.snakeDots}/>
         <Food dot={this.state.food}/>

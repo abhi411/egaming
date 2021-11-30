@@ -5,11 +5,11 @@ import './styles.css'
 class GameFive extends React.Component {
   
   componentDidMount() {
-    document.getElementsByTagName("body")[0].style.backgroundColor = "#ffffff"
+    // document.getElementsByTagName("body")[0].style.backgroundColor = "#ffffff"
    
   }
   componentWillUnmount(){
-    document.getElementsByTagName("body")[0].style.backgroundColor = "#000000"
+    // document.getElementsByTagName("body")[0].style.backgroundColor = "#000000"
 
   }
   render() {

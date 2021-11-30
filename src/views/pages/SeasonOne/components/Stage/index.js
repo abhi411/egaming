@@ -11,7 +11,7 @@ import Color from "color";
 
 const Game = styled.div`
 	width: 100vw;
-	height: ${props => (props.portrait ? "95" : "100")}vh;
+	height: ${props => (props.portrait ? "80" : "90")}vh;
 	display: flex;
 	flex-direction: ${props => (props.portrait ? "column" : "row")};
 	justify-content: center;

@@ -17,7 +17,7 @@ const GameThree = (props) => {
 
   return (
       <div className="">
-        <GlobalScore game="Tetris Game" score="10"/>
+        <GlobalScore game="Tetris Game" />
         <Tetris/>
       </div>
     )
