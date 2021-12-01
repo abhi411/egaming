@@ -285,7 +285,7 @@ function onGameOver() {
 
 }
   return (
-     <div>
+     <div style={{height: '100%'}}>
        <GlobalScore game="Breakout Game" score="10"/>
 
         <div id="rules" class="rules">
@@ -297,8 +297,8 @@ function onGameOver() {
         <p>If you miss the ball, your score and the blocks will reset.</p>
        
         </div>
-        <div class="div-center" >
-          <canvas ref={canvasRef} id="canvas" width="800" height="600"></canvas>
+        <div class="div-center">
+          <canvas style={{width:"60%",height:"100%"}} width="800" height="500" ref={canvasRef} id="canvas"></canvas>
         </div>
         <div className="btn-c-one">
          
