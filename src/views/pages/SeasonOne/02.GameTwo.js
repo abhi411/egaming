@@ -136,7 +136,7 @@ class GameTwo extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{overflow:'hidden'}}>
 			{/* <h4 style={{textAlign:'center'}}>Snack Game</h4> */}
        <GlobalScore game="Snack Game"/>
         <div className="game-area">
@@ -145,7 +145,7 @@ class GameTwo extends Component {
       </div>
         <div className="btn-c-one">
           <span  className="button button__cta ">Score : {this.state.snakeDots.length-2}</span>
-            <button className="button button__cta" onClick={()=>this.onGameOver()} >End Game</button>
+            {/* <button className="button button__cta" onClick={()=>this.onGameOver()} >End Game</button> */}
 
         </div>
       </div>

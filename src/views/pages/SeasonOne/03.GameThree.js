@@ -265,9 +265,9 @@ useEffect(() => {
   //     rules.classList.remove('show')
   //   }
   // });
-  closeBtn.addEventListener('click', () => {  alert(`Game Over.`);
-  showAllBricks();
-      score = 0;});
+  // closeBtn.addEventListener('click', () => {  alert(`Game Over.`);
+  // showAllBricks();
+  //     score = 0;});
 },[])
 
 function displayrule(){
@@ -305,7 +305,7 @@ function onGameOver() {
             <span  className="button button__cta" onClick={ () =>displayrule(!ruleshow)} >{ ruleshow?"Open Rules" : "Close Rules"} </span>
             
           
-            <button className="button button__cta"  id="close-btn">End Game</button>
+            {/* <button className="button button__cta"  id="close-btn">End Game</button> */}
 
         </div>
       </div>

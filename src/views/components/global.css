@@ -33,3 +33,14 @@
     display: block;
     transition: all 0.2s ease-in-out;
 }
+.btn-end {
+    padding: 10px 16px;
+    width: -moz-fit-content;
+    width: fit-content;
+    border: 1px solid;
+    border-radius: 5px;
+    /* top: 0; */
+    left: 20px;
+    position: absolute;
+    z-index: 99;  
+}

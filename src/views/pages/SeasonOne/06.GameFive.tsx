@@ -473,21 +473,21 @@ const GameSix =()=> {
   }, [])
   
     return (
-        <div >
-        <meta name="viewport" content="width=device-width,user-scalable=no"/>
+        <div style={{overflow:'hidden'}} >
+        <meta name="viewport" content="width=device-width,user-scalable=no"/> 
         <GlobalScore color="#000000" game="Tower Blocks Game" score="10"/>
 
-        <div style={{marginTop:80}} id="container">
-            <div style={{marginTop:50}} id="game"></div>
+        <div  id="container">
+            <div  id="game"></div>
             
             <div id="score"> Score 0</div>
             <div id="instructions">Click (or press the spacebar) to place the block</div>
-            <div class="game-over">
+            <div className="game-over">
                 <h2>Game Over</h2>
                 <p>You did great, you're the best.</p>
                 <p>Click or spacebar to start again</p>
             </div>
-            <div class="game-ready">
+            <div className="game-ready">
                 <div id="start-button">Start</div>
                 <div></div>
             </div>

@@ -25,18 +25,13 @@ return (
           Games have begun
         </h2>
         <Link to="/games" className="button button__cta">Launch Game</Link>
-        {/* <div className="intro intro-content">
+        <div className="intro intro-content">
           <Link to="/gameTwo" className="globalBtn">Snack Game</Link>
-          <br></br>
           <Link to="/gameThree" className="globalBtn"> Breakout Game</Link>
-          <br></br>
           <Link to="/gameFour" className="globalBtn">Tetris Game</Link>
-          <br></br>
           <Link to="/gameFive" className="globalBtn">Tower Blocks Game</Link>
-          <br></br>
           <Link to="/gameSix" className="globalBtn">T-Rex Game</Link>
-          <br></br>
-         </div> */}
+         </div>
       </div>
 
       <div className="site-teaser default-spacing">
