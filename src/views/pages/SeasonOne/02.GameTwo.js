@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Snake from './Snake';
 import Food from './Food';
 import "./GameTwo.css"
-import { updatePlayerDatabase } from "util/interactions-game";
+import { updatePlayerDatabase,updatePlayerDatabaseBefore } from "util/interactions-game";
 import { PlayerContext } from "util/PlayerContext";
 import {GlobalScore,setGlobalScore} from '../../components/GlobalScore';
 
@@ -29,6 +29,7 @@ class GameTwo extends Component {
   state = initialState;
 
   componentDidMount() {
+    updatePlayerDatabaseBefore();
     setInterval(this.moveSnake, this.state.speed);
     document.onkeydown = this.onKeyDown;
   }
@@ -130,8 +131,9 @@ class GameTwo extends Component {
   }
 
   onGameOver() {
-    // alert(`Game Over.`);
+    alert(`Game Over.`);
     this.setState(initialState)
+    updatePlayerDatabase()
   }
 
   render() {

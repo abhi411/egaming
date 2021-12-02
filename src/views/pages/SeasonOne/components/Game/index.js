@@ -8,6 +8,7 @@ import Center from "../Center";
 
 import { PrintPlayerInMap } from "../../utils/Utils";
 import {setGlobalScore} from '../../../../components/GlobalScore';
+import { updatePlayerDatabase,updatePlayerDatabaseBefore } from "util/interactions-game";
 
 //TODO: Alterar OnClick (rotatePlayer) para OnFastClick (criar hook)
 //TODO: Organização do componente "Game" (Separar codigo em hooks, outros components e funcoes)
@@ -121,6 +122,8 @@ const Game = () => {
 	const [gameOver, setGameOver] = useState(false);
 
 	useEffect(() => {
+		updatePlayerDatabaseBefore()
+
 		const levelBaseScore = 1000;
 		const nextLevel = level + 1;
 		const nextLevelScore =

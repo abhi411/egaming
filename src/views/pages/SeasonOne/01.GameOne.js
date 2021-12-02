@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import { useEffect, useState, useRef, useContext } from "react";
 import { PlayerContext } from "util/PlayerContext";
-import { updatePlayerDatabase } from "util/interactions-game";
+import { updatePlayerDatabase,updatePlayerDatabaseBefore } from "util/interactions-game";
 
 const GameOne = (props) => {
   // This is the ID of the current player so we can pass it to the DB later
@@ -63,7 +63,7 @@ const GameOne = (props) => {
   useEffect(() => {
     makeBox();
     gameContainerRef.current.scrollIntoView();
-
+    updatePlayerDatabaseBefore()
     const timeOut = setTimeout(() => {
       clearTimeout(makeBoxOutRef.current);
       setResultDisplay(true);

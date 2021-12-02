@@ -32,11 +32,11 @@ export const GlobalScore = (props) => {
                  <Link style={{color:"#cccccc"}} to="/" >End Game</Link>
             </div>
             <h4 style={{textAlign:'center',zIndex:99}}>{props.game}</h4>
-            <div className="globalScore">
+            {/* <div className="globalScore">
                 <Subscribe>
                     <span >Global Score: {getglobalScore(sc >=0 ? sc :0)}</span>
                 </Subscribe>
-            </div>
+            </div> */}
         </div>
         
     )

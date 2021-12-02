@@ -194,7 +194,35 @@ export const updatePlayerDatabase = async(playerID, playerScore) => {
     body: JSON.stringify({
       "id": playerID,
       "hasPlayed": false,
-      "scoreGame1": playerScore,
+      "score": playerScore,
+    })
+  })
+  .then((response) => response.json())
+  .then((response) => {
+    alert(response.message)
+  })
+  .catch(err => {
+    console.log(err);
+
+    var msg = 'The CORS policy for this site does not ' +
+    'allow access from the specified Origin.'
+
+    alert(msg);
+  });
+}
+export const updatePlayerDatabaseBefore = async(playerID, playerScore) => {
+  // const URL = `https://player456.herokuapp.com/api/players/${playerID}`;
+  const URL = `http://localhost:9000/update/${playerID}`;
+
+  fetch(URL, {
+    mode: "cors",
+    method: 'POST', // The method
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({
+      "id": playerID,
+      "hasPlayed": true
     })
   })
   .then((response) => response.json())

@@ -1,10 +1,10 @@
 import React from "react";
 import { useEffect, useState, useRef, useContext } from "react";
 import { PlayerContext } from "util/PlayerContext";
-import { updatePlayerDatabase } from "util/interactions-game";
 import "./breakout.css"
 import "./breakout.js"
 import {GlobalScore,setGlobalScore} from '../../components/GlobalScore';
+import { updatePlayerDatabase,updatePlayerDatabaseBefore } from "util/interactions-game";
 
 const GameFour = (props) => {
   // This is the ID of the current player so we can pass it to the DB later
@@ -25,7 +25,7 @@ useEffect(() => {
   const ctx = canvas.getContext('2d');
   
   let score = 0;
-  
+  updatePlayerDatabaseBefore()
   const brickRowCount = 9;
   const brickColumnCount = 5;
   const delay = 500; //delay to reset the game

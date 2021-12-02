@@ -1,6 +1,8 @@
 import React from "react";
 import { useEffect} from "react";
 import { GlobalScore, setGlobalScore } from "views/components/GlobalScore";
+import { updatePlayerDatabase,updatePlayerDatabaseBefore } from "util/interactions-game";
+
 // import "./GSix";
 
 const GameSix =()=> {
@@ -298,7 +300,7 @@ const GameSix =()=> {
       constructor()
       {
         this.stage = new Stage();
-        
+        updatePlayerDatabaseBefore()
         this.mainContainer = document.getElementById('container');
         this.scoreContainer = document.getElementById('score');
         this.startButton = document.getElementById('start-button');
@@ -459,6 +461,7 @@ const GameSix =()=> {
       {
         this.updateState(this.STATES.ENDED);
         // updateOnce()
+        // updatePlayerDatabase()
       }
   
       tick()
