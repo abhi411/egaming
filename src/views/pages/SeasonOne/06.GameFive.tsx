@@ -1,11 +1,16 @@
 import React from "react";
-import { useEffect} from "react";
+import { useEffect,useContext} from "react";
 import { GlobalScore, setGlobalScore } from "views/components/GlobalScore";
 import { updatePlayerDatabase,updatePlayerDatabaseBefore } from "util/interactions-game";
+import { useHistory } from "react-router-dom";
+import { PlayerContext } from "util/PlayerContext";
 
 // import "./GSix";
 
 const GameSix =()=> {
+  const [activePlayer, setActivePlayer] = useContext(PlayerContext);
+  let history = useHistory();
+
   useEffect(() => {
     interface BlockReturn
     {
@@ -15,7 +20,8 @@ const GameSix =()=> {
       direction: number;
       bonus?: boolean;
     }
-  
+  updatePlayerDatabaseBefore(activePlayer.playerID)
+   
     class Stage
     {
       private container: any;
@@ -457,11 +463,14 @@ const GameSix =()=> {
         if(this.blocks.length >= 5) this.instructions.classList.add('hide');
       }
       
-      endGame()
+     async endGame()
       {
         this.updateState(this.STATES.ENDED);
         // updateOnce()
-        // updatePlayerDatabase()
+        alert('Game Over')
+        await updatePlayerDatabase(activePlayer.playerID,this.blocks.length - 1)
+        history.push("/");
+
       }
   
       tick()

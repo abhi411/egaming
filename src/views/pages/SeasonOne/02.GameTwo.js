@@ -5,7 +5,7 @@ import "./GameTwo.css"
 import { updatePlayerDatabase,updatePlayerDatabaseBefore } from "util/interactions-game";
 import { PlayerContext } from "util/PlayerContext";
 import {GlobalScore,setGlobalScore} from '../../components/GlobalScore';
-
+import { withRouter } from 'react-router-dom' 
 const getRandomCoordinates = () => {
   let min = 1;
   let max = 98;
@@ -27,9 +27,12 @@ const initialState = {
 class GameTwo extends Component {
 
   state = initialState;
+  static contextType = PlayerContext
 
   componentDidMount() {
-    updatePlayerDatabaseBefore();
+  const [activePlayer, setActivePlayer] = this.context
+    console.log("PlayerContext",activePlayer)
+    updatePlayerDatabaseBefore(activePlayer.playerID);
     setInterval(this.moveSnake, this.state.speed);
     document.onkeydown = this.onKeyDown;
   }
@@ -130,10 +133,12 @@ class GameTwo extends Component {
     }
   }
 
-  onGameOver() {
+  async onGameOver() {
     alert(`Game Over.`);
-    this.setState(initialState)
-    updatePlayerDatabase()
+    // this.setState(initialState)
+    const [activePlayer, setActivePlayer] = this.context
+    await updatePlayerDatabase(activePlayer.playerID,this.state.snakeDots.length-2)
+    this.props.history.push("/");
   }
 
   render() {
@@ -155,4 +160,4 @@ class GameTwo extends Component {
   }
 }
 
-export default GameTwo;
+export default withRouter(GameTwo);

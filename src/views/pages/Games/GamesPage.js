@@ -4,7 +4,7 @@ import VerifyPlayer from "./components/verifyPlayer";
 import GamesHeader from "../../components/GamesHeader";
 import GameTimer from "../../components/GameTimer";
 import GameOne from "../SeasonOne/01.GameOne";
-
+import timer from "../../../timer-config.json";
 
 const GamesPage = () => {
   // const [activePlayer, setActivePlayer] = useContext(PlayerContext);

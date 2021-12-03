@@ -2,11 +2,18 @@ import * as React from 'react'
 import { GlobalScore } from 'views/components/GlobalScore'
 import Game from './Game'
 import './styles.css'
+import { updatePlayerDatabase,updatePlayerDatabaseBefore } from "util/interactions-game";
+import { PlayerContext } from "util/PlayerContext";
+import { withRouter } from 'react-router-dom' 
+
 class GameFive extends React.Component {
+  static contextType = PlayerContext
   
   componentDidMount() {
     // document.getElementsByTagName("body")[0].style.backgroundColor = "#ffffff"
-   
+    const [activePlayer, setActivePlayer] = this.context
+    console.log("PlayerContext",activePlayer)
+    updatePlayerDatabaseBefore(activePlayer.playerID);
   }
   componentWillUnmount(){
     // document.getElementsByTagName("body")[0].style.backgroundColor = "#000000"
@@ -28,4 +35,4 @@ class GameFive extends React.Component {
   }
 }
 
-export default GameFive
+export default withRouter(GameFive)

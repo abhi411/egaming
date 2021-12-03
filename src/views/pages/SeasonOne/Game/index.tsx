@@ -19,7 +19,6 @@ class App extends React.Component {
     }
     const { Runner } = await import('../Runner')
     const runner = new Runner(this.outerContainerEl, config)
-    updatePlayerDatabaseBefore()
     runner.init()
   }
 

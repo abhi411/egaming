@@ -5,14 +5,14 @@ import "./breakout.css"
 import "./breakout.js"
 import {GlobalScore,setGlobalScore} from '../../components/GlobalScore';
 import { updatePlayerDatabase,updatePlayerDatabaseBefore } from "util/interactions-game";
-
+import { useHistory } from "react-router-dom";
 const GameFour = (props) => {
   // This is the ID of the current player so we can pass it to the DB later
   const [activePlayer, setActivePlayer] = useContext(PlayerContext);
    const [ruleshow, setruleshow] = useState(true)
   const canvasRef = useRef(null);
   // const [playerScore, setPlayerScore] = useState("0");
-
+  let history = useHistory();
   // Update the DB with the score. Move this wherever it needs to go.
   // updatePlayerDatabase(activePlayer.playerID, playerScore);
 
@@ -25,7 +25,7 @@ useEffect(() => {
   const ctx = canvas.getContext('2d');
   
   let score = 0;
-  updatePlayerDatabaseBefore()
+  updatePlayerDatabaseBefore(activePlayer.playerID)
   const brickRowCount = 9;
   const brickColumnCount = 5;
   const delay = 500; //delay to reset the game
@@ -171,8 +171,10 @@ useEffect(() => {
   
     // Hit bottom wall - Lose
     if (ball.y + ball.size > canvas.height) {
-      showAllBricks();
-      score = 0;
+      console.log("show all balls")
+      onGameOver()
+      // showAllBricks();
+      // score = 0;
     }
   }
   
@@ -187,8 +189,10 @@ useEffect(() => {
   
         //After 0.5 sec restart the game
         setTimeout(function () {
-            showAllBricks();
-            score = 0;
+      // console.log("show all balls")
+            onGameOver();
+            // showAllBricks();
+            // score = 0;
             setGlobalScore(score)
             paddle.x = canvas.width / 2 - 40;
             paddle.y = canvas.height - 20;
@@ -252,6 +256,12 @@ useEffect(() => {
     }
   }
   
+  async function onGameOver() {
+    alert(`Game Over.`);
+    // this.setState(initialState)
+    await updatePlayerDatabase(activePlayer.playerID,score)
+    history.push("/");
+}
   // Keyboard event handlers
   document.addEventListener('keydown', keyDown);
   document.addEventListener('keyup', keyUp);
@@ -281,9 +291,7 @@ function displayrule(){
   }
  setruleshow(!ruleshow)
 }
-function onGameOver() {
 
-}
   return (
      <div style={{height: '100%'}}>
        <GlobalScore game="Breakout Game" score="10"/>

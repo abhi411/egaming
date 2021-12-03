@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect ,useContext} from "react";
 import { useDrag } from "react-use-gesture";
 import BarLoader from "react-spinners/BarLoader";
 
 import Stage from "../Stage";
 import { useInterval } from "../../hooks/useInterval";
 import Center from "../Center";
-
 import { PrintPlayerInMap } from "../../utils/Utils";
 import {setGlobalScore} from '../../../../components/GlobalScore';
 import { updatePlayerDatabase,updatePlayerDatabaseBefore } from "util/interactions-game";
+import { PlayerContext } from "util/PlayerContext";
+import { useHistory } from "react-router-dom";
 
 //TODO: Alterar OnClick (rotatePlayer) para OnFastClick (criar hook)
 //TODO: Organização do componente "Game" (Separar codigo em hooks, outros components e funcoes)
@@ -120,9 +121,11 @@ const Game = () => {
 	const [dragX, setDragX] = useState(0);
 	const [dragY, setDragY] = useState(0);
 	const [gameOver, setGameOver] = useState(false);
+	const [activePlayer, setActivePlayer] = useContext(PlayerContext);
+	let history = useHistory();
 
 	useEffect(() => {
-		updatePlayerDatabaseBefore()
+		updatePlayerDatabaseBefore(activePlayer.playerID)
 
 		const levelBaseScore = 1000;
 		const nextLevel = level + 1;
@@ -135,14 +138,17 @@ const Game = () => {
 	}, [level, score]);
 
 	const restartGame = () => {
-		setMap(initialMap); //TODO: lose game
-		setlines(0);
-		setScore(0);
-		setLevel(1);
-		setGameOver(false);
+		history.push("/");
+
+		// setMap(initialMap); //TODO: lose game
+		// setlines(0);
+		// setScore(0);
+		// setLevel(1);
+		// setGameOver(false);
 	}
 
 	const loseGame = () => {
+		updatePlayerDatabase(activePlayer.playerID,score)
 		setGameOver(true);
 	};
 
