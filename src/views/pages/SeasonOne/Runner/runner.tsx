@@ -6,7 +6,7 @@ import GroundManager from './groundManager'
 import Trex from './trex'
 import gameoverTextImg from './images/gameover_text.png'
 import restartButtonImg from './images/restart_button.png'
-import { setGlobalScore,endGame } from 'views/components/GlobalScore'
+import { setGlobalScore, setgame } from 'views/components/GlobalScore'
 
 export const STATUS = {
   START: Symbol('START'),
@@ -237,7 +237,10 @@ class Runner extends React.Component {
     this.status = STATUS.CRASH
     this.distanceMeter.updateHighScore()
     this.drawGameOverPanel()
-    endGame(this.distanceMeter.score);
+    // setGlobalScore(this.distanceMeter.score)
+    setgame(this.distanceMeter.score)
+
+    // endGame(this.distanceMeter.score);
   }
 
   drawBackGround() {

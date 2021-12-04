@@ -14,6 +14,9 @@ import { updatePlayerDatabase,updatePlayerDatabaseBefore } from "util/interactio
 import { useHistory } from "react-router-dom";
 
 export const [scoreChange$, setGlobalScore] = createSignal();
+export const [endgame$, setgame] = createSignal();
+
+export const [_useScore, _score$] = bind(endgame$, 0)
 export const [useScore, score$] = bind(scoreChange$, 0)
  
 
@@ -23,18 +26,25 @@ const [totalScore, totalCount$] = bind(
     )
 )
 
-export const endGame = (score)  =>{
-console.log("inside the gloabl score ")
-// updatePlayerDatabase(activePlayer.playerID,score)
-// history.push("/")
-}
+// export const endGame = (score)  =>{
+// console.log("inside the gloabl score ")
+// // updatePlayerDatabase(activePlayer.playerID,score)
+// // history.push("/")
+// }
 
 export const GlobalScore = (props) => {
     //setScore(12323)
+  let history = useHistory();
+
     const sc = useScore();
     updateGlobal(sc >=0 ? sc :0)
     const [activePlayer, setActivePlayer] = useContext(PlayerContext);
-    
+    const end = _useScore();
+    console.log("endgame",end)
+    if(end){
+        updatePlayerDatabase(activePlayer.playerID,end)
+        history.push("/")
+    }
     // global = global + sc >=0 ? sc :0
     console.log("inside gloabl",sc)
 
