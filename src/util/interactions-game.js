@@ -182,8 +182,9 @@ export const checkForPlayerTokens = async(address) => {
 }
 
 export const updatePlayerDatabase = async(playerID, playerScore) => {
-  // const URL = `https://player456.herokuapp.com/api/players/${playerID}`;
-  const URL = `http://localhost:9000/update/${playerID}`;
+  console.log("playerScore",playerScore,playerID)
+  const URL = `https://player456.herokuapp.com/api/players/${playerID}`;
+  // const URL = `http://localhost:9000/update/${playerID}`;
 
   fetch(URL, {
     mode: "cors",
@@ -192,7 +193,7 @@ export const updatePlayerDatabase = async(playerID, playerScore) => {
       "content-type": "application/json",
     },
     body: JSON.stringify({
-      "id": playerID,
+      "playerID": playerID,
       "hasPlayed": false,
       "score": playerScore,
     })
@@ -207,12 +208,12 @@ export const updatePlayerDatabase = async(playerID, playerScore) => {
     var msg = 'The CORS policy for this site does not ' +
     'allow access from the specified Origin.'
 
-    alert(msg);
+    // alert(msg);
   });
 }
 export const updatePlayerDatabaseBefore = async(playerID, playerScore) => {
-  // const URL = `https://player456.herokuapp.com/api/players/${playerID}`;
-  const URL = `http://localhost:9000/update/${playerID}`;
+  const URL = `https://player456.herokuapp.com/api/players/${playerID}`;
+  // const URL = `http://localhost:9000/update/${playerID}`;
 
   fetch(URL, {
     mode: "cors",
@@ -221,7 +222,7 @@ export const updatePlayerDatabaseBefore = async(playerID, playerScore) => {
       "content-type": "application/json",
     },
     body: JSON.stringify({
-      "id": playerID,
+      "playerID": playerID,
       "hasPlayed": true
     })
   })
@@ -235,6 +236,6 @@ export const updatePlayerDatabaseBefore = async(playerID, playerScore) => {
     var msg = 'The CORS policy for this site does not ' +
     'allow access from the specified Origin.'
 
-    alert(msg);
+    // alert(msg);
   });
 }

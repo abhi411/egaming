@@ -2,6 +2,10 @@ import React, { useCallback } from "react";
 import { useEffect, useState, useRef, useContext } from "react";
 import { PlayerContext } from "util/PlayerContext";
 import { updatePlayerDatabase,updatePlayerDatabaseBefore } from "util/interactions-game";
+import '../../../sass/blocks/games/_game-section.scss'
+import {GlobalScore,setGlobalScore,setgame} from '../../components/GlobalScore';
+import { useHistory } from "react-router-dom";
+import { async } from "rxjs";
 
 const GameOne = (props) => {
   // This is the ID of the current player so we can pass it to the DB later
@@ -23,6 +27,7 @@ const GameOne = (props) => {
   const difficult = 1;
   const point= 50;
   const fault = 50;
+  let history = useHistory();
 
   const makeBoxOutRef = useRef(null);
   const scoreRef = useRef(score);
@@ -43,9 +48,9 @@ const GameOne = (props) => {
       }
 
       let top=Math.random();
-      top=top*300;
+      top=top*200;
       let left=Math.random();
-      left=left*500;
+      left=left*400;
 
       setBoxTop(top+"px");
 
@@ -61,22 +66,27 @@ const GameOne = (props) => {
   }, []);
 
   useEffect(() => {
+    console.log("inside useeffect")
     makeBox();
     gameContainerRef.current.scrollIntoView();
-    updatePlayerDatabaseBefore()
+    updatePlayerDatabaseBefore(activePlayer.playerID)
     const timeOut = setTimeout(() => {
+      console.log("Score",score)
       clearTimeout(makeBoxOutRef.current);
       setResultDisplay(true);
       setBoxDisplay(false);
+      setgame("end")
+      // updatePlayerDatabase(activePlayer.playerID,score)
+      // history.push("/");
       alert('Game Over');
 
       //  Moved this to interactions-game.js
+      console.log("Score",score)
 
       // Here's the calculation for the total score; need to figure out best reaction time first.
       // Note: do we want to average their reaction time instead?
       // const totalScore = scoreRef.current / (.5 * bestReactionTime);
-      updatePlayerDatabase(activePlayer.playerID, scoreRef.current);
-
+      
       // Set player as "has played" on global Context
       setActivePlayer({hasPlayed: true});
     },5000);
@@ -86,7 +96,7 @@ const GameOne = (props) => {
       clearTimeout(timeOut);
     };
 
-  }, [activePlayer.playerID, makeBox, setActivePlayer]);
+  }, []);
 
   const getRandomColor = () => {
     const letters="0123456789ABCDEF".split('');
@@ -112,59 +122,68 @@ const GameOne = (props) => {
     if (reactionTime && (bestReactionTime >= reactionTime)) {
       setBestReactionTime(reactionTime);
     }
-    // new formula of score
-    let newscore = (point/(0.5 * reactionTime)).toFixed(2);
-    setScore(newscore)
-    // old formula of score
-    // if ((difficult === 1 && reactionTime > 4) || (difficult === 2 && (reactionTime > 2 && reactionTime < 3))) {
-    //   setScore(score);
-    // } else if (difficult === 2 && reactionTime > 3) {
-    //   setScore(score - fault);
-    // } else if(difficult === 3 && reactionTime > 1) {
-    //   setScore(score - fault);
-    // } else{
-    //   setScore(score + point);
-    // }
+
+    if ((difficult === 1 && reactionTime > 4) || (difficult === 2 && (reactionTime > 2 && reactionTime < 3))) {
+      setScore(score);
+      setGlobalScore(score)
+      console.log("score1",score)
+    } else if (difficult === 2 && reactionTime > 3) {
+      setScore(score - fault);
+      setGlobalScore(score - fault)
+      console.log("score2",score)
+
+    } else if(difficult === 3 && reactionTime > 1) {
+      setScore(score - fault);
+      setGlobalScore(score - fault)
+      console.log("score3",score)
+
+    } else{
+      setGlobalScore(score + point)
+      setScore(score + point);
+      console.log("score4",score)
+
+    }
 
     makeBox();
   }
-
+  async function onGameOver() {
+    alert(`Game Over.`);
+    // this.setState(initialState)
+    // const [activePlayer, setActivePlayer] = this.context
+    await updatePlayerDatabase(activePlayer.playerID,score)
+    history.push("/");
+  }
   return (
-    <div ref={gameContainerRef}>
-      <button className="button button__cta" onClick={() => {props.endGame()}}>End Game</button>
-      <div className="background">
-
-      <div className="fixedwidth">
-
-        <div className="clear"> </div>
-
-        <div className="clear"> </div>
-
-        <div className="clear"> </div>
-
-        <div id="border" className="border">
-
-              { boxDisplay ? (
-                  <div id="Box" className="Box" onClick={clickBox} style={{ borderRadius: boxRadius, top: boxTop, left: boxLeft, backgroundColor: boxBackground }}> </div>
-                ) : ('')
-              }
-
-              <div className="clear"> </div>
-
-              { resultDisplay ? (
-                  <p id="result" className="result"> Best time: <span id="bestResult">{bestReactionTime}</span>s</p>
-                ) : ('')
-              }
-
+    <div className="game-container" ref={gameContainerRef} style={{backgroundColor: "#191970"}}>
+        <div style={{width: '100%', display: 'flex', justifyContent: 'flex-start', alignItems: 'center', backgroundColor: 'black'}}>
+          {/* BUTTON HERE */}
+          {/* <GlobalScore game="Reaction Game"/> */}
+          <button className="button" onClick={() => {onGameOver()}}>End Game</button>
         </div>
-
-        <p className="timeBox">Your Time: <span id="time">{reactionTime}</span>s</p>
-
-        <p className="scoreBox">Your score: <span id="score">{score}</span> points </p>
-
-      </div>
-
-      </div>
+        <div style={{width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop:20}}>
+          {/* GAME HERE */}
+          <div id="border" className="border">
+              { boxDisplay ? (
+                  <div id="Box" className="Box" onClick={clickBox} style={{ borderRadius: boxRadius, top: boxTop, left: boxLeft, backgroundColor: boxBackground ,display:'block'}}> </div>
+                ) : ('')
+              }
+        </div>
+        </div>
+        <div style={{width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+          {/* SCORE HERE */}
+          <p className="timeBox">Your Time: &nbsp;<span id="time">{reactionTime}</span>s</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <p className="scoreBox">Your score: <span id="score">{score}</span> &nbsp;points </p>
+        </div>
+        <div style={{width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+          {/* TIME HERE */}
+          { resultDisplay ? (
+              <p id="result" className="result"> Best time: <span id="bestResult">{bestReactionTime}</span>s</p>
+            ) : ('')
+          }
+        </div>
     </div>
   )
 }

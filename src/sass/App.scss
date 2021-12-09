@@ -22,6 +22,15 @@
 @import "globals/typography";
 @import "globals/layout";
 
+// Blocks
+@import "blocks/header";
+@import "blocks/intro";
+@import "blocks/characters";
+@import "blocks/roadmap";
+@import "blocks/team";
+@import "blocks/social";
+@import "blocks/footer";
+@import "blocks/games/game-section";
 
 // Elements
 @import "elements/button";
@@ -32,15 +41,6 @@
 @import "elements/game-timer";
 @import "elements/table";
 
-// Blocks
-@import "blocks/header";
-@import "blocks/intro";
-@import "blocks/characters";
-@import "blocks/roadmap";
-@import "blocks/team";
-@import "blocks/social";
-@import "blocks/footer";
-@import "blocks/games/game-section";
 
 // Games pages
 @import "blocks/games/games-header";
@@ -60,7 +60,13 @@ html, body
 	max-width: 100%;
     overflow-x: hidden;
 }
-
+#Box{
+	width:200px;
+	height:200px;
+	border-style:solid;
+	position:relative;
+	display:none; 
+		 }
 #container
 {
 	width: 100%;

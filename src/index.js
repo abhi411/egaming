@@ -8,8 +8,8 @@ import Web3 from 'web3'
 import MainContainer from "./views/MainContainer_GamesLive";
 
 // Styles
-import "./sass/App.scss";
-
+import "./sass/App.scss"; 
+import "./App.css";
 function getLibrary(provider) {
   return new Web3(provider);
 }

@@ -4,7 +4,7 @@ export const PlayerContext = createContext();
 
 export const PlayerProvider = props => {
   const [activePlayer, setActivePlayer] = useState({
-    playerID: "1234",
+    playerID: "94",
     hasPlayed: false,
     isEliminated: false,
     global:0

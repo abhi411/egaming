@@ -40,13 +40,14 @@ export const GlobalScore = (props) => {
     updateGlobal(sc >=0 ? sc :0)
     const [activePlayer, setActivePlayer] = useContext(PlayerContext);
     const end = _useScore();
-    console.log("endgame",end)
+    // console.log("endgame",end)
     if(end){
-        updatePlayerDatabase(activePlayer.playerID,end)
+        let e = end == 'end' ? sc : end
+        updatePlayerDatabase(activePlayer.playerID,e)
         history.push("/")
     }
     // global = global + sc >=0 ? sc :0
-    console.log("inside gloabl",sc)
+     console.log("inside gloabl",sc,activePlayer.playerID)
 
     return (
         <div className="globalScore-div">

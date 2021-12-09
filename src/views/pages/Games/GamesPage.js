@@ -8,7 +8,7 @@ import timer from "../../../timer-config.json";
 
 const GamesPage = () => {
   // const [activePlayer, setActivePlayer] = useContext(PlayerContext);
-  const [gameActive, setGameActive] = useState(false);
+  const [gameActive, setGameActive] = useState(true);
   const [activePlayer, setActivePlayer] = useContext(PlayerContext);
 
   const toggleGameActive = () => {
