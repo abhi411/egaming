@@ -6,6 +6,7 @@ import "./breakout.js"
 import {GlobalScore,setGlobalScore} from '../../components/GlobalScore';
 import { updatePlayerDatabase,updatePlayerDatabaseBefore } from "util/interactions-game";
 import { useHistory } from "react-router-dom";
+var ret;
 const GameFour = (props) => {
   // This is the ID of the current player so we can pass it to the DB later
   const [activePlayer, setActivePlayer] = useContext(PlayerContext);
@@ -23,7 +24,7 @@ useEffect(() => {
   const rules = document.getElementById('rules');
   const canvas = document.getElementById('canvas');
   const ctx = canvas.getContext('2d');
-  
+
   let score = 0;
   updatePlayerDatabaseBefore(activePlayer.playerID)
   const brickRowCount = 9;
@@ -171,7 +172,8 @@ useEffect(() => {
   
     // Hit bottom wall - Lose
     if (ball.y + ball.size > canvas.height) {
-      console.log("show all balls")
+      console.log("show all balls",ret)
+      cancelAnimationFrame(ret)
       onGameOver()
       // showAllBricks();
       // score = 0;
@@ -189,7 +191,7 @@ useEffect(() => {
   
         //After 0.5 sec restart the game
         setTimeout(function () {
-      // console.log("show all balls")
+      console.log(" settimeout show all balls")
             onGameOver();
             // showAllBricks();
             // score = 0;
@@ -229,12 +231,12 @@ useEffect(() => {
   
     // Draw everything
     draw();
-  
-    requestAnimationFrame(update);
+    ret = requestAnimationFrame(update);
+    console.log("ret",ret)
   }
   
   update();
-  
+  console.log("update fuction called")
   // Keydown event
   function keyDown(e) {
     if (e.key === 'Right' || e.key === 'ArrowRight') {
@@ -278,7 +280,8 @@ useEffect(() => {
   // closeBtn.addEventListener('click', () => {  alert(`Game Over.`);
   // showAllBricks();
   //     score = 0;});
-},[])
+  return () => cancelAnimationFrame(ret);
+}, [])
 
 function displayrule(){
   const rulesBtn = document.getElementById('rules-btn');

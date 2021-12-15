@@ -88,7 +88,7 @@ const GameOne = (props) => {
       // const totalScore = scoreRef.current / (.5 * bestReactionTime);
       
       // Set player as "has played" on global Context
-      setActivePlayer({hasPlayed: true});
+      //setActivePlayer({hasPlayed: true});
     },5000);
 
     return () => {
@@ -157,8 +157,8 @@ const GameOne = (props) => {
     <div className="game-container" ref={gameContainerRef} style={{backgroundColor: "#191970"}}>
         <div style={{width: '100%', display: 'flex', justifyContent: 'flex-start', alignItems: 'center', backgroundColor: 'black'}}>
           {/* BUTTON HERE */}
-          {/* <GlobalScore game="Reaction Game"/> */}
-          <button className="button" onClick={() => {onGameOver()}}>End Game</button>
+          <GlobalScore />
+          {/* <button className="button" onClick={() => {onGameOver()}}>End Game</button> */}
         </div>
         <div style={{width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop:20}}>
           {/* GAME HERE */}

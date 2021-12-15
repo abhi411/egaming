@@ -184,7 +184,7 @@ export const checkForPlayerTokens = async(address) => {
 export const updatePlayerDatabase = async(playerID, playerScore) => {
   console.log("playerScore",playerScore,playerID)
   const URL = `https://player456.herokuapp.com/api/players/${playerID}`;
-  // const URL = `http://localhost:9000/update/${playerID}`;
+  //  const URL = `http://localhost:8000/api/players/${playerID}`;
 
   fetch(URL, {
     mode: "cors",
@@ -196,11 +196,12 @@ export const updatePlayerDatabase = async(playerID, playerScore) => {
       "playerID": playerID,
       "hasPlayed": false,
       "score": playerScore,
+      "token": "94"
     })
   })
   .then((response) => response.json())
   .then((response) => {
-    alert(response.message)
+     alert(response.message)
   })
   .catch(err => {
     console.log(err);
@@ -213,7 +214,7 @@ export const updatePlayerDatabase = async(playerID, playerScore) => {
 }
 export const updatePlayerDatabaseBefore = async(playerID, playerScore) => {
   const URL = `https://player456.herokuapp.com/api/players/${playerID}`;
-  // const URL = `http://localhost:9000/update/${playerID}`;
+  //const URL = `http://localhost:8000/api/players/${playerID}`;
 
   fetch(URL, {
     mode: "cors",
@@ -223,12 +224,13 @@ export const updatePlayerDatabaseBefore = async(playerID, playerScore) => {
     },
     body: JSON.stringify({
       "playerID": playerID,
-      "hasPlayed": true
+      "hasPlayed": true,
+      "token": "94"
     })
   })
   .then((response) => response.json())
   .then((response) => {
-    alert(response.message)
+    // alert(response.message)
   })
   .catch(err => {
     console.log(err);

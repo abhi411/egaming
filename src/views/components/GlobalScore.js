@@ -40,8 +40,9 @@ export const GlobalScore = (props) => {
     updateGlobal(sc >=0 ? sc :0)
     const [activePlayer, setActivePlayer] = useContext(PlayerContext);
     const end = _useScore();
-    // console.log("endgame",end)
+    console.log("endgame",end)
     if(end){
+        console.log("end data")
         let e = end == 'end' ? sc : end
         updatePlayerDatabase(activePlayer.playerID,e)
         history.push("/")
