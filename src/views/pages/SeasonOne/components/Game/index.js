@@ -360,7 +360,7 @@ const Game = () => {
 		},
 		{ filterTaps: true, lockDirection: true }
 	);
-
+console.log("mape",map)
 	if (!player || !map || !hintPlayer)
 		return (
 			<Center>

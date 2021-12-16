@@ -4,7 +4,7 @@ import { PlayerContext } from "util/PlayerContext";
 import { updatePlayerDatabase } from "util/interactions-game";
 import Tetris from "./components/Tetris";
 import { GlobalScore } from "views/components/GlobalScore";
-const GameThree = (props) => {
+const GameFour = (props) => {
   // This is the ID of the current player so we can pass it to the DB later
   const [activePlayer, setActivePlayer] = useContext(PlayerContext);
 
@@ -13,14 +13,18 @@ const GameThree = (props) => {
   // Update the DB with the score. Move this wherever it needs to go.
   // updatePlayerDatabase(activePlayer.playerID, playerScore);
 
-
+  const gameContainerRef = useRef(null);
+  useEffect(() => {
+    console.log("inside useeffect")
+    gameContainerRef.current.scrollIntoView();
+  },[])
 
   return (
-      <div className="">
+      <div ref={gameContainerRef} className="">
         <GlobalScore game="Tetris Game" />
         <Tetris/>
       </div>
     )
   }
 
-export default GameThree;
+export default GameFour;

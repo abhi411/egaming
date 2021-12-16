@@ -21,7 +21,7 @@ const VerifyPlayer = (props) => {
   const [hasWallet, setHasWallet] = useState("");
   const [status, setStatus] = useState("");
   const [modalIsOpen, setIsOpen] = useState(false);
-  const [numTokensOwned, setNumTokensOwned] = useState("");
+  const [numTokensOwned, setNumTokensOwned] = useState("1");
   const [tokenList, setTokenList] = useState({});
   const [activePlayer, setActivePlayer] = useContext(PlayerContext);
 
@@ -273,8 +273,13 @@ return (
         <p>Welcome, Player {activePlayer.playerID}</p>
 
         <BeginGameButton beginGame={props.beginGame} />
+        {/* <BeginGameButton beginGame={props.beginGame} />
+        <BeginGameButton beginGame={props.beginGame} />
+        <BeginGameButton beginGame={props.beginGame} />
+        <BeginGameButton beginGame={props.beginGame} />
+        <BeginGameButton beginGame={props.beginGame} /> */}
 
-        <div className="intro intro-content">
+        {/* <div className="intro intro-content">
           <Link to="/gameTwo" className="globalBtn">Snack Game</Link>
           <br></br>
           <Link to="/gameThree" className="globalBtn"> Breakout Game</Link>
@@ -285,7 +290,7 @@ return (
           <br></br>
           <Link to="/gameSix" className="globalBtn">T-Rex Game</Link>
           <br></br>
-         </div>
+         </div> */}
         <button className={`button button__link ${parseInt(numTokensOwned) > 1 ? "" : "hidden"}`} onClick={() => {switchPlayer();}} id={`changePlayerButton`}>Choose a different player</button>
       </div>
 

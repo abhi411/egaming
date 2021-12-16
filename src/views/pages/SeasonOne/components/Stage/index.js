@@ -46,6 +46,7 @@ const Next = styled.div`
 	align-items: center;
 	margin-bottom: ${props => (props.portrait ? 0 : props.pixelSize / 3)}px;
 	margin-right: ${props => (!props.portrait ? 0 : props.pixelSize / 3)}px;
+
 `;
 
 const StyledStage = styled.div`
@@ -57,6 +58,7 @@ const StyledStage = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+
 `;
 
 const Center = styled.div`
@@ -176,6 +178,8 @@ const Stage = ({ lose, restartClick, map, player, hint, status, paused, ...other
 	const stageRef = useRef(null);
 
 	useEffect(() => {
+		map.pop()
+		map.pop()
 		let pixelSizeHeight = height / 20;
 		let pixelSizeWidth = width / 32;
 		if (portrait) {
@@ -186,11 +190,13 @@ const Stage = ({ lose, restartClick, map, player, hint, status, paused, ...other
 			pixelSizeWidth < pixelSizeHeight ? pixelSizeWidth : pixelSizeHeight
 		);
 		setPortrait(height > width);
+		console.log("height",height)
 	}, [width, height, portrait]);
 
 	useEffect(() => {
 		if (!player.next) return;
 		setNextRender(getRenderizacaoBloco(player.next.bloco));
+		console.log("hjgjg",getRenderizacaoBloco(player.next.bloco))
 	}, [player.next]);
 
 	useEffect(() => {
@@ -207,7 +213,7 @@ const Stage = ({ lose, restartClick, map, player, hint, status, paused, ...other
 		<div>
 			<Game portrait={portrait}>
 				{nextRender && (
-					<ContainerNext portrait={portrait} pixelSize={pixelSize}>
+					<ContainerNext style={{marginTop:10}} portrait={portrait} pixelSize={pixelSize}>
 						<Next portrait={portrait} theme3d={theme3d} pixelSize={pixelSize}>
 							{nextRender.map((row, y) => (
 								<Row pixelSize={pixelSize} key={`row-${y}`}>
@@ -307,8 +313,8 @@ const Stage = ({ lose, restartClick, map, player, hint, status, paused, ...other
 							backgroundColor={theme3d ? "#444" : "black"}
 							portrait={portrait}
 							borderSize={pixelSize / 10}
-							margin={pixelSize / 3}
-							padding={pixelSize / 2}
+							margin={pixelSize / 5}
+							padding={pixelSize / 5}
 							title="SCORE"
 							value={status.score}
 						/>

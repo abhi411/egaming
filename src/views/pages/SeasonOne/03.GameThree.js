@@ -7,7 +7,7 @@ import {GlobalScore,setGlobalScore} from '../../components/GlobalScore';
 import { updatePlayerDatabase,updatePlayerDatabaseBefore } from "util/interactions-game";
 import { useHistory } from "react-router-dom";
 var ret;
-const GameFour = (props) => {
+const GameThree = (props) => {
   // This is the ID of the current player so we can pass it to the DB later
   const [activePlayer, setActivePlayer] = useContext(PlayerContext);
    const [ruleshow, setruleshow] = useState(true)
@@ -17,6 +17,7 @@ const GameFour = (props) => {
   // Update the DB with the score. Move this wherever it needs to go.
   // updatePlayerDatabase(activePlayer.playerID, playerScore);
 
+  const gameContainerRef = useRef(null);
 
 useEffect(() => {
   const rulesBtn = document.getElementById('rules-btn');
@@ -24,6 +25,7 @@ useEffect(() => {
   const rules = document.getElementById('rules');
   const canvas = document.getElementById('canvas');
   const ctx = canvas.getContext('2d');
+  gameContainerRef.current.scrollIntoView();
 
   let score = 0;
   updatePlayerDatabaseBefore(activePlayer.playerID)
@@ -296,10 +298,10 @@ function displayrule(){
 }
 
   return (
-     <div style={{height: '100%'}}>
+     <div ref={gameContainerRef} style={{height: '100%'}}>
        <GlobalScore game="Breakout Game" score="10"/>
 
-        <div id="rules" class="rules">
+        {/* <div id="rules" class="rules">
         <h2>How To Play:</h2>
         <p>
           Use your right and left keys to move the paddle to bounce the ball up
@@ -307,13 +309,13 @@ function displayrule(){
         </p>
         <p>If you miss the ball, your score and the blocks will reset.</p>
        
-        </div>
+        </div> */}
         <div class="div-center">
           <canvas style={{width:"60%",height:"100%"}} width="800" height="500" ref={canvasRef} id="canvas"></canvas>
         </div>
         <div className="btn-c-one">
          
-            <span  className="button button__cta" onClick={ () =>displayrule(!ruleshow)} >{ ruleshow?"Open Rules" : "Close Rules"} </span>
+            {/* <span  className="button button__cta" onClick={ () =>displayrule(!ruleshow)} >{ ruleshow?"Open Rules" : "Close Rules"} </span> */}
             
           
             {/* <button className="button button__cta"  id="close-btn">End Game</button> */}
@@ -323,4 +325,4 @@ function displayrule(){
     )
   }
 
-export default GameFour;
+export default GameThree;

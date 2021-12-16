@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect,useContext} from "react";
+import { useEffect,useContext,useRef} from "react";
 import { GlobalScore, setGlobalScore } from "views/components/GlobalScore";
 import { updatePlayerDatabase,updatePlayerDatabaseBefore } from "util/interactions-game";
 import { useHistory } from "react-router-dom";
@@ -7,9 +7,10 @@ import { PlayerContext } from "util/PlayerContext";
 
 // import "./GSix";
 
-const GameSix =()=> {
+const GameFive =()=> {
   const [activePlayer, setActivePlayer] = useContext(PlayerContext);
   let history = useHistory();
+  const gameContainerRef = useRef(null);
 
   useEffect(() => {
     interface BlockReturn
@@ -20,7 +21,8 @@ const GameSix =()=> {
       direction: number;
       bonus?: boolean;
     }
-  updatePlayerDatabaseBefore(activePlayer.playerID)
+  updatePlayerDatabaseBefore(activePlayer.playerID);
+  gameContainerRef.current.scrollIntoView();
    
     class Stage
     {
@@ -47,8 +49,10 @@ const GameSix =()=> {
           antialias: true,
           alpha: false
         });
+        console.log(gameContainerRef.current.clientWidth,"hjhj");
+        this.renderer.setSize(gameContainerRef.current.clientWidth, window.innerHeight);
         
-        this.renderer.setSize(window.innerWidth, window.innerHeight);
+        //this.renderer.setSize(gameContainerRef.current.clientWidth, window.innerHeight);
         this.renderer.setClearColor('#000000', 1);
         this.container.appendChild( this.renderer.domElement );
         console.log("body",this.body)
@@ -88,7 +92,8 @@ const GameSix =()=> {
       onResize()
       {
         let viewSize = 30;
-        this.renderer.setSize(window.innerWidth, window.innerHeight);
+        this.renderer.setSize(gameContainerRef.current.clientWidth, window.innerHeight);
+        // this.renderer.setSize(gameContainerRef.current.clientWidth, gameContainerRef.current.clientHeight);
         this.camera.left = window.innerWidth / - viewSize;
         this.camera.right = window.innerWidth / viewSize;
         this.camera.top = window.innerHeight / viewSize;
@@ -485,12 +490,12 @@ const GameSix =()=> {
   }, [])
   
     return (
-        <div style={{overflow:'hidden'}} >
+        <div ref={gameContainerRef} style={{overflow:'hidden'}} >
         <meta name="viewport" content="width=device-width,user-scalable=no"/> 
-        <GlobalScore color="#000000" game="Tower Blocks Game" score="10"/>
+        <GlobalScore color="#000000" game="Tower Blocks Game" />
 
         <div  id="container">
-            <div  id="game"></div>
+            <div  id="game"></  div>
             
             <div id="score"> Score 0</div>
             <div id="instructions">Click (or press the spacebar) to place the block</div>
@@ -510,4 +515,4 @@ const GameSix =()=> {
   
 }
 
-export default GameSix
+export default GameFive

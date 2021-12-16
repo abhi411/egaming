@@ -63,7 +63,7 @@ class Runner extends React.Component {
 
   config = {
     ID: '',
-    WIDTH: 900,
+    WIDTH: window.innerWidth-300,
     HEIGHT: 450,
     BG_COLOR: '#FFFFFF',
     INIT_SPEED: 300,

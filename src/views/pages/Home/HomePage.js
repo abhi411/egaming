@@ -24,7 +24,7 @@ return (
         <h2 className="h4 start-date">
           Games have begun
         </h2>
-        {/* <Link to="/games" className="button button__cta">Launch Game</Link> */}
+        <Link to="/games" className="button button__cta">Launch Game</Link>
         <Link to="/gameOne" className="globalBtn">Reaction Game</Link>
         <div className="intro intro-content">
           <Link to="/gameTwo" className="globalBtn">Snack Game</Link>

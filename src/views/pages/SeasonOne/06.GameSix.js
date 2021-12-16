@@ -6,11 +6,16 @@ import { updatePlayerDatabase,updatePlayerDatabaseBefore } from "util/interactio
 import { PlayerContext } from "util/PlayerContext";
 import { withRouter } from 'react-router-dom' 
 
-class GameFive extends React.Component {
+class GameSix extends React.Component {
   static contextType = PlayerContext
-  
+  constructor(props) {
+    super(props);
+    this.gameContainerRef = React.createRef();
+  }
   componentDidMount() {
     // document.getElementsByTagName("body")[0].style.backgroundColor = "#ffffff"
+    this.gameContainerRef.current.scrollIntoView();
+
     const [activePlayer, setActivePlayer] = this.context
     console.log("PlayerContext",activePlayer)
     updatePlayerDatabaseBefore(activePlayer.playerID);
@@ -21,7 +26,7 @@ class GameFive extends React.Component {
   }
   render() {
     return (
-        <div className='container'>
+        <div ref={this.gameContainerRef} className='container'>
         <GlobalScore color="#000000" game="Running T-Rex Game" score="10"/>
 
 		   	{/* <h4 style={{textAlign:'center',color:"#000000"}}>Running T-Rex Game</h4> */}
@@ -35,4 +40,4 @@ class GameFive extends React.Component {
   }
 }
 
-export default withRouter(GameFive)
+export default withRouter(GameSix)
